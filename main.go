@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
 )
 
 func init(){
@@ -15,8 +18,29 @@ func init(){
 	}
 }
 
+func readJSON(){
+	jsonFile, err := os.Open("quotes.json")
+	if err != nil{
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully opened quotes.json")
+	fmt.Println(jsonFile)
+	defer jsonFile.Close()
+}
 
 func main(){
 	fmt.Println("Hello World!")
+	readJSON()
+	handleRequests()
+}
 
+func homePage(w http.ResponseWriter, r*http.Request){
+	fmt.Fprintf(w, "Welocome to the homepage!")
+	fmt.Println("Endpoint Hit: Homepage")
+}
+
+
+func handleRequests(){
+	http.HandleFunc("/", homePage)
+	log.Fatal(http.ListenAndServe(":10000", nil))
 }
