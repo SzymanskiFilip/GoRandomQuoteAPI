@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -28,7 +29,8 @@ func readJSON(){
 		_ = jsonFile.Close()
 	}(jsonFile)
 
-	
+	var quote Quote
+	json.Unmarshal([]byte(jsonFile), &quote)
 }
 
 func main(){
