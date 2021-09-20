@@ -5,6 +5,6 @@ type Quotes struct{
 }
 
 type Quote struct{
-	Person string `json:"person"`
-	Quote string `json:"quote"`
+	Person string
+	Quote string
 }
