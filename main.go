@@ -24,7 +24,6 @@ func readJSON(){
 		fmt.Println(err)
 	}
 	fmt.Println("Successfully opened quotes.json")
-	fmt.Println(jsonFile)
 	defer jsonFile.Close()
 }
 
@@ -35,7 +34,7 @@ func main(){
 }
 
 func homePage(w http.ResponseWriter, r*http.Request){
-	fmt.Fprintf(w, "Welocome to the homepage!")
+	_, _ = fmt.Fprintf(w, "Welocome to the homepage!")
 	fmt.Println("Endpoint Hit: Homepage")
 }
 
