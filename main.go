@@ -24,7 +24,11 @@ func readJSON(){
 		fmt.Println(err)
 	}
 	fmt.Println("Successfully opened quotes.json")
-	defer jsonFile.Close()
+	defer func(jsonFile *os.File) {
+		_ = jsonFile.Close()
+	}(jsonFile)
+
+	
 }
 
 func main(){
