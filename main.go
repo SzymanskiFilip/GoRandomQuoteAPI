@@ -38,6 +38,10 @@ func homePage(w http.ResponseWriter, r*http.Request){
 	fmt.Println("Endpoint Hit: Homepage")
 }
 
+func randomQuote(w http.ResponseWriter, r*http.Request){
+	fmt.Println("Endpoint Hit: randomQuote")
+}
+
 
 func handleRequests(){
 	http.HandleFunc("/", homePage)
