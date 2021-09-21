@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 func init(){
@@ -18,13 +20,17 @@ func init(){
 }
 
 func readJSON(){
-	jsonFile, err := ioutil.ReadFile("quotes.json")
+	jsonFile, err := os.Open("quotes.json")
 	if err != nil{
 		fmt.Println(err)
 	}
 	fmt.Println("Successfully opened quotes.json")
-	jsonString := string(jsonFile)
-	fmt.Println(jsonString)
+	defer jsonFile.Close()
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	var quotes []Quote
+	
 }
 
 func main(){
